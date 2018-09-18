@@ -136,19 +136,7 @@ public class CodePushNativeModule extends ReactContextBaseJavaModule {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        // We don't need to resetReactRootViews anymore 
-                        // due the issue https://github.com/facebook/react-native/issues/14533
-                        // has been fixed in RN 0.46.0
-                        //resetReactRootViews(instanceManager);
-
-                        instanceManager.recreateReactContextInBackground();
-                        mCodePush.initializeUpdateAfterRestart();
-                    } catch (Exception e) {
-                        // The recreation method threw an unknown exception
-                        // so just simply fallback to restarting the Activity (if it exists)
-                        loadBundleLegacy();
-                    }
+                    loadBundleLegacy();
                 }
             });
 
